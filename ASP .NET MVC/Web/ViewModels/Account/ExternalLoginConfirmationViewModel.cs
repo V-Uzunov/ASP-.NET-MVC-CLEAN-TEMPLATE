@@ -1,4 +1,4 @@
-﻿namespace GamesShopBG.Web.ViewModels.Account
+﻿namespace Web.ViewModels.Account
 {
     using System.ComponentModel.DataAnnotations;
 
