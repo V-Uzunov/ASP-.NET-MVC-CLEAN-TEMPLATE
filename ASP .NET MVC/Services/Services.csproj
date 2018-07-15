@@ -52,5 +52,10 @@
       <Name>Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+    <Folder Include="Implementations\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
