@@ -1,5 +1,8 @@
 ﻿namespace Web
 {
+    using Auth;
+    using Data;
+    using Data.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
@@ -37,7 +40,7 @@
 
         public static UserManager Create(IdentityFactoryOptions<UserManager> options, IOwinContext context)
         {
-            var manager = new UserManager(new UserStore<User>(context.Get<GamesShopBGDbContext>()));
+            var manager = new UserManager(new UserStore<User>(context.Get<AppDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<User>(manager)
             {

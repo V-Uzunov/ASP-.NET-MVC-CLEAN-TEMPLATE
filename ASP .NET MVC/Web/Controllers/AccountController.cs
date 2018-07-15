@@ -1,6 +1,7 @@
 ﻿namespace Web.Controllers
 {
     using Auth;
+    using Data.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
@@ -8,7 +9,7 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
-    using Web.Models;
+    using Web.ViewModels.Account;
 
     [Authorize]
     public class AccountController : Controller

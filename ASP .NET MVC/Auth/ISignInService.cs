@@ -1,5 +1,6 @@
 ﻿namespace Auth
 {
+    using Data.Models;
     using Microsoft.AspNet.Identity.Owin;
     using System;
     using System.Threading.Tasks;
