@@ -10,13 +10,13 @@
     {
         IIdentityMessageService SmsService { get; set; }
 
-        Task<IdentityResult> CreateAsync(User user, string password);
+        Task<IdentityResult> CreateAsync(ApplicationUser user, string password);
 
         Task<IdentityResult> ConfirmEmailAsync(string userId, string token);
 
         Task<bool> IsEmailConfirmedAsync(string userId);
 
-        Task<User> FindByNameAsync(string userName);
+        Task<ApplicationUser> FindByNameAsync(string userName);
 
         Task<IdentityResult> ResetPasswordAsync(string userId, string token, string newPassword);
 
@@ -24,7 +24,7 @@
 
         Task<IdentityResult> AddLoginAsync(string userId, UserLoginInfo login);
 
-        Task<IdentityResult> CreateAsync(User user);
+        Task<IdentityResult> CreateAsync(ApplicationUser user);
 
         Task<string> GenerateChangePhoneNumberTokenAsync(string userId, string phoneNumber);
 
@@ -36,7 +36,7 @@
 
         Task<IdentityResult> RemoveLoginAsync(string userId, UserLoginInfo login);
 
-        Task<User> FindByIdAsync(string userId);
+        Task<ApplicationUser> FindByIdAsync(string userId);
 
         Task<IdentityResult> SetTwoFactorEnabledAsync(string userId, bool enabled);
 
@@ -48,7 +48,7 @@
 
         Task<IdentityResult> AddPasswordAsync(string userId, string password);
 
-        User FindById(string userId);
+        ApplicationUser FindById(string userId);
 
         Task<IdentityResult> AddToRolesAsync(string userId, params string[] roles);
     }

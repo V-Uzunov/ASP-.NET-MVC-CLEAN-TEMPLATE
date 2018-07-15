@@ -1,5 +1,6 @@
 ﻿namespace Auth
 {
+    using Microsoft.AspNet.Identity.Owin;
     using System;
     using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@
 
         Task<bool> HasBeenVerifiedAsync();
 
-        Task SignInAsync(User user, bool isPersistent, bool rememberBrowser);
+        Task SignInAsync(ApplicationUser user, bool isPersistent, bool rememberBrowser);
 
         Task<SignInStatus> TwoFactorSignInAsync(string provider, string code, bool isPersistent, bool rememberBrowser);
 
