@@ -1,4 +1,4 @@
-namespace Data.Migrations
+namespace MVCTemplate.Data.Migrations
 {
     using System.Data.Entity.Migrations;
 

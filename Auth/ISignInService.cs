@@ -1,4 +1,4 @@
-﻿namespace Auth
+﻿namespace MVCTemplate.Auth
 {
     using Data.Models;
     using Microsoft.AspNet.Identity.Owin;

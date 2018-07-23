@@ -1,14 +1,14 @@
-﻿namespace Web
-{
-    using Data;
-    using Data.Models;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.Owin;
-    using Microsoft.Owin;
-    using Microsoft.Owin.Security.Cookies;
-    using Owin;
-    using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
+using Microsoft.Owin.Security.Cookies;
+using MVCTemplate.Data;
+using MVCTemplate.Data.Models;
+using Owin;
+using System;
 
+namespace Web
+{
     public partial class Startup
     {
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864

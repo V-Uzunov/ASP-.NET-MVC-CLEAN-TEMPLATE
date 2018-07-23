@@ -1,4 +1,4 @@
-﻿namespace Data
+﻿namespace MVCTemplate.Data
 {
     public class DataConstants
     {

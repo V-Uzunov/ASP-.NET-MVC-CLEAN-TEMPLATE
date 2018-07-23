@@ -1,13 +1,13 @@
 ﻿namespace Web
 {
-    using Auth;
-    using Data;
-    using Data.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
     using Microsoft.Owin.Security;
+    using MVCTemplate.Auth;
+    using MVCTemplate.Data;
+    using MVCTemplate.Data.Models;
     using System;
     using System.Security.Claims;
     using System.Threading.Tasks;

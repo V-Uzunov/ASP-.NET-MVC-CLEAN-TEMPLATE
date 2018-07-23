@@ -3,17 +3,17 @@
 
 namespace Web.App_Start
 {
-    using System;
-    using System.Data.Entity;
-    using System.Web;
-    using Auth;
-    using Data;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
+    using MVCTemplate.Auth;
+    using MVCTemplate.Data;
+    using MVCTemplate.Data.AppData;
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Web.Common.WebHost;
+    using System;
+    using System.Data.Entity;
+    using System.Web;
 
     public static class NinjectWebCommon 
     {

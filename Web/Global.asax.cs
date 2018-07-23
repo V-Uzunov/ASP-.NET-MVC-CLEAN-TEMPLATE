@@ -1,12 +1,12 @@
 ﻿namespace Web
 {
-    using Data;
-    using Data.Migrations;
-    using Web.App_Start;
+    using MVCTemplate.Data;
+    using MVCTemplate.Data.Migrations;
     using System.Data.Entity;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
+    using Web.App_Start;
 
     public class MvcApplication : System.Web.HttpApplication
     {

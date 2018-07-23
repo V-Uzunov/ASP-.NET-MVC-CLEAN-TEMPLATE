@@ -1,4 +1,4 @@
-﻿namespace Common
+﻿namespace MVCTemplate.Common
 {
     public class GlobalConstants
     {

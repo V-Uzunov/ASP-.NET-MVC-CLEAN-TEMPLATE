@@ -1,8 +1,10 @@
-namespace Data
+namespace MVCTemplate.Data
 {
     using Data.Models;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using MVCTemplate.Data.Common.Models;
     using System;
+    using System.Data.Entity;
     using System.Linq;
 
     public class AppDbContext : IdentityDbContext<User>
@@ -15,6 +17,12 @@ namespace Data
         public static AppDbContext Create()
         {
             return new AppDbContext();
+        }
+        
+        public override int SaveChanges()
+        {
+            this.ApplyAuditInfoRules();
+            return base.SaveChanges();
         }
 
         private void ApplyAuditInfoRules()

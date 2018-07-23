@@ -1,8 +1,8 @@
 ﻿namespace Web.Controllers
 {
-    using Auth;
     using Microsoft.AspNet.Identity;
     using Microsoft.Owin.Security;
+    using MVCTemplate.Auth;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web;

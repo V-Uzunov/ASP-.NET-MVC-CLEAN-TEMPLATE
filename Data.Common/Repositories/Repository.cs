@@ -1,9 +1,12 @@
-﻿namespace Data.Repositories
+﻿namespace MVCTemplate.Data.Repositories
 {
+    using MVCTemplate.Data.Common.Models;
+    using System;
     using System.Data.Entity;
     using System.Linq;
 
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T>
+        where T : class, IAuditInfo, IDeletableEntity
     {
         private DbContext context;
         private IDbSet<T> set;
@@ -15,52 +18,58 @@
 
         public IQueryable<T> All()
         {
+            return this.set.Where(x => !x.IsDeleted); ;
+        }
+
+        public IQueryable<T> AllWithDeleted()
+        {
             return this.set;
         }
 
         public void Add(T entity)
         {
-            ChangeState(entity, EntityState.Added);
+            this.set.Add(entity);
         }
 
         public T Find(object id)
         {
-            return this.set.Find(id);
+            var item =  this.set.Find(id);
+
+            if (item.IsDeleted)
+            {
+                return null;
+            }
+
+            return item;
         }
 
-        public void Update(T entity)
+        public void Delete(T entity)
         {
-            ChangeState(entity, EntityState.Modified);
+            entity.IsDeleted = true;
+            entity.DeletedOn = DateTime.UtcNow;
         }
 
-        public T Delete(T entity)
-        {
-            ChangeState(entity, EntityState.Deleted);
-            return entity;
-        }
-
-        public T Delete(object id)
+        public void Delete(object id)
         {
             T entity = this.Find(id);
-            this.Delete(entity);
-            return entity;
+            entity.IsDeleted = true;
+            entity.DeletedOn = DateTime.UtcNow;
+        }
+
+        public void HardDelete(T entity)
+        {
+            this.set.Remove(entity);
+        }
+
+        public void HardDelete(object id)
+        {
+            T entity = this.Find(id);
+            this.set.Remove(entity);
         }
 
         public int SaveChanges()
         {
             return this.context.SaveChanges();
-        }
-
-        private void ChangeState(T entity, EntityState state)
-        {
-            var entry = this.context.Entry(entity);
-            if (entry.State == EntityState.Detached)
-            {
-                this.set.Attach(entity);
-            }
-
-            entry.State = state;
-
         }
     }
 }
