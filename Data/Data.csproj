@@ -77,9 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDbContext.cs" />
-    <Compile Include="AppData.cs" />
+    <Compile Include="Common\AppData.cs" />
     <Compile Include="DataConstants.cs" />
-    <Compile Include="IAppData.cs" />
+    <Compile Include="Common\IAppData.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

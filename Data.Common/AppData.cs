@@ -1,4 +1,4 @@
-﻿namespace Data
+﻿namespace Data.Common
 {
     using Data.Models;
     using Data.Repositories;
