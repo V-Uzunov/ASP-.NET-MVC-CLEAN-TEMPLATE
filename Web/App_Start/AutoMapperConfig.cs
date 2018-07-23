@@ -6,10 +6,9 @@
     {
         public static void ConfigureAutomapper()
         {
-            //Add mapper config
+            ////Add mapper config
             Mapper.Initialize(action =>
             {
-                
             });
         }
     }

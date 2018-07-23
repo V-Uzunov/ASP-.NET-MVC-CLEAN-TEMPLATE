@@ -10,6 +10,7 @@
     {
         private DbContext context;
         private IDbSet<T> set;
+
         public Repository(DbContext context)
         {
             this.context = context;
@@ -18,7 +19,7 @@
 
         public IQueryable<T> All()
         {
-            return this.set.Where(x => !x.IsDeleted); ;
+            return this.set.Where(x => !x.IsDeleted);
         }
 
         public IQueryable<T> AllWithDeleted()
@@ -33,7 +34,7 @@
 
         public T Find(object id)
         {
-            var item =  this.set.Find(id);
+            var item = this.set.Find(id);
 
             if (item.IsDeleted)
             {

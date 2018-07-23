@@ -1,7 +1,6 @@
 ﻿namespace MVCTemplate.Data.Common.Models
 {
     using System;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public interface IDeletableEntity
     {

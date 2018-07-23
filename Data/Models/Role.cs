@@ -1,9 +1,9 @@
 ﻿namespace MVCTemplate.Data.Models
 {
-    using System;
-    using System.ComponentModel.DataAnnotations.Schema;
     using Microsoft.AspNet.Identity.EntityFramework;
     using MVCTemplate.Data.Common.Models;
+    using System;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Role : IdentityRole, IAuditInfo, IDeletableEntity
     {

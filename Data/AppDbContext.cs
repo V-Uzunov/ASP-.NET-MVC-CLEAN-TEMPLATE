@@ -18,7 +18,7 @@ namespace MVCTemplate.Data
         {
             return new AppDbContext();
         }
-        
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();

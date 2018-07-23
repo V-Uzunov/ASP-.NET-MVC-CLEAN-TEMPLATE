@@ -7,7 +7,6 @@
     using System.Collections.Generic;
     using System.Data.Entity;
 
-
     public class AppData : IAppData
     {
         private readonly DbContext context;
@@ -26,7 +25,7 @@
                 return this.GetRepository<User>();
             }
         }
-        
+
         public IRepository<Role> Roles
         {
             get
@@ -40,11 +39,11 @@
             var typeOfRepository = typeof(T);
             if (!this.repositories.ContainsKey(typeOfRepository))
             {
-                var newRepository = Activator.CreateInstance(typeof(Repository<T>), context);
+                var newRepository = Activator.CreateInstance(typeof(Repository<T>), this.context);
                 this.repositories.Add(typeOfRepository, newRepository);
             }
 
-            return (IRepository<T>) this.repositories[typeOfRepository];
+            return (IRepository<T>)this.repositories[typeOfRepository];
         }
 
         public int SaveChanges()
