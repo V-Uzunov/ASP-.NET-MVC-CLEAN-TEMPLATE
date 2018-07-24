@@ -81,7 +81,6 @@
     <Compile Include="DataConstants.cs" />
     <Compile Include="AppData\IAppData.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -26,14 +26,6 @@
             }
         }
 
-        public IRepository<Role> Roles
-        {
-            get
-            {
-                return this.GetRepository<Role>();
-            }
-        }
-
         private IRepository<T> GetRepository<T>() where T : class, IAuditInfo, IDeletableEntity
         {
             var typeOfRepository = typeof(T);

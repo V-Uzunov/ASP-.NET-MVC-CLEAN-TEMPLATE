@@ -9,10 +9,5 @@
         {
             get;
         }
-
-        IRepository<Role> Roles
-        {
-            get;
-        }
     }
 }
