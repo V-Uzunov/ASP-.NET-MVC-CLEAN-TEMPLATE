@@ -1,26 +1,20 @@
-﻿namespace MVCTemplate.Data.Repositories
+﻿namespace MVCTemplate.Data.Common.Repositories
 {
-    using MVCTemplate.Data.Common.Models;
     using System.Linq;
 
-    public interface IRepository<T>
-        where T : class, IAuditInfo, IDeletableEntity
+    public interface IRepository<T> where T : class
     {
         IQueryable<T> All();
-
-        IQueryable<T> AllWithDeleted();
 
         void Add(T entity);
 
         T Find(object id);
 
+        void Update(T entity);
+
         void Delete(T entity);
 
         void Delete(object id);
-
-        void HardDelete(T entity);
-
-        void HardDelete(object id);
 
         int SaveChanges();
     }

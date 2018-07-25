@@ -1,8 +1,8 @@
 ﻿namespace MVCTemplate.Data.AppData
 {
     using MVCTemplate.Data.Common.Models;
+    using MVCTemplate.Data.Common.Repositories;
     using MVCTemplate.Data.Models;
-    using MVCTemplate.Data.Repositories;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -18,24 +18,36 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
-        public IRepository<User> Users
+        public IDeletableEntityRepository<User> Users
         {
             get
             {
-                return this.GetRepository<User>();
+                return this.GetDeletableEntityRepository<User>();
             }
         }
 
-        private IRepository<T> GetRepository<T>() where T : class, IAuditInfo, IDeletableEntity
+        private IRepository<T> GetRepository<T>()
+            where T : class
         {
-            var typeOfRepository = typeof(T);
-            if (!this.repositories.ContainsKey(typeOfRepository))
+            if (!this.repositories.ContainsKey(typeof(T)))
             {
-                var newRepository = Activator.CreateInstance(typeof(Repository<T>), this.context);
-                this.repositories.Add(typeOfRepository, newRepository);
+                var type = typeof(Repository<T>);
+                this.repositories.Add(typeof(T), Activator.CreateInstance(type, this.context));
             }
 
-            return (IRepository<T>)this.repositories[typeOfRepository];
+            return (IRepository<T>)this.repositories[typeof(T)];
+        }
+
+        private IDeletableEntityRepository<T> GetDeletableEntityRepository<T>()
+            where T : class, IDeletableEntity, new()
+        {
+            if (!this.repositories.ContainsKey(typeof(T)))
+            {
+                var type = typeof(DeletableEntityRepository<T>);
+                this.repositories.Add(typeof(T), Activator.CreateInstance(type, this.context));
+            }
+
+            return (IDeletableEntityRepository<T>)this.repositories[typeof(T)];
         }
 
         public int SaveChanges()

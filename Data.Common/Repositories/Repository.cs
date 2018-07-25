@@ -1,14 +1,12 @@
-﻿namespace MVCTemplate.Data.Repositories
+﻿namespace MVCTemplate.Data.Common.Repositories
 {
-    using MVCTemplate.Data.Common.Models;
-    using System;
     using System.Data.Entity;
     using System.Linq;
 
     public class Repository<T> : IRepository<T>
-        where T : class, IAuditInfo, IDeletableEntity
+        where T : class
     {
-        private DbContext context;
+        private readonly DbContext context;
         private IDbSet<T> set;
 
         public Repository(DbContext context)
@@ -17,60 +15,52 @@
             this.set = context.Set<T>();
         }
 
-        public IQueryable<T> All()
+        public virtual IQueryable<T> All()
         {
-            return this.set.Where(x => !x.IsDeleted);
+            return this.set.AsQueryable();
         }
 
-        public IQueryable<T> AllWithDeleted()
+        public virtual void Add(T entity)
         {
-            return this.set;
+            ChangeState(entity, EntityState.Added);
         }
 
-        public void Add(T entity)
+        public virtual T Find(object id)
         {
-            this.set.Add(entity);
+            return this.set.Find(id);
         }
 
-        public T Find(object id)
+        public virtual void Update(T entity)
         {
-            var item = this.set.Find(id);
-
-            if (item.IsDeleted)
-            {
-                return null;
-            }
-
-            return item;
+            ChangeState(entity, EntityState.Modified);
         }
 
-        public void Delete(T entity)
+        public virtual void Delete(T entity)
         {
-            entity.IsDeleted = true;
-            entity.DeletedOn = DateTime.UtcNow;
+            ChangeState(entity, EntityState.Deleted);
         }
 
-        public void Delete(object id)
+        public virtual void Delete(object id)
         {
             T entity = this.Find(id);
-            entity.IsDeleted = true;
-            entity.DeletedOn = DateTime.UtcNow;
-        }
-
-        public void HardDelete(T entity)
-        {
-            this.set.Remove(entity);
-        }
-
-        public void HardDelete(object id)
-        {
-            T entity = this.Find(id);
-            this.set.Remove(entity);
+            this.Delete(entity);
         }
 
         public int SaveChanges()
         {
             return this.context.SaveChanges();
+        }
+
+        private void ChangeState(T entity, EntityState state)
+        {
+            var entry = this.context.Entry(entity);
+            if (entry.State == EntityState.Detached)
+            {
+                this.set.Attach(entity);
+            }
+
+            entry.State = state;
+
         }
     }
 }

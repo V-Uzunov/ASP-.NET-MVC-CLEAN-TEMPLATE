@@ -1,11 +1,11 @@
 ﻿namespace MVCTemplate.Data.AppData
 {
+    using MVCTemplate.Data.Common.Repositories;
     using MVCTemplate.Data.Models;
-    using MVCTemplate.Data.Repositories;
 
     public interface IAppData
     {
-        IRepository<User> Users
+        IDeletableEntityRepository<User> Users
         {
             get;
         }
