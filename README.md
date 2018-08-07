@@ -2,7 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/302pxaai82i62c4t?svg=true)](https://ci.appveyor.com/project/V-Uzunov/asp-net-mvc-clean-template)
 
-Clean ASP .NET MVC 5 template ready to use. Template contains Data with Entity Repositories, Services, AutoMapper, DI Container (Ninject). 
+Clean ASP .NET MVC 5 template ready to use. Template contains Data with Generic Repository Pattern and Unit Of Work Pattern, Services, AutoMapper, DI Container (Ninject). 
 
 # Guide to setup and run template
 •	Run ASP-.NET-MVC-CLEAN-TEMPLATE app from ASP-.NET-MVC.sln<br />
