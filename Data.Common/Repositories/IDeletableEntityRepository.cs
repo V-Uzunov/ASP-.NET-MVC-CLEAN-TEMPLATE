@@ -3,9 +3,13 @@
     using System.Linq;
 
     public interface IDeletableEntityRepository<T> : IRepository<T>
-        where T : class
+       where T : class
     {
         IQueryable<T> AllWithDeleted();
+
+        void Delete(T entity);
+
+        void Delete(object id);
 
         void HardDelete(T entity);
 
